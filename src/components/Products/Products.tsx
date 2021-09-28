@@ -1,8 +1,20 @@
 import React from "react";
 import {connect} from 'react-redux';
+import { RootState } from "../../redux/store";
 import Product from "./Product/Product";
-import classes from './Products.module.css'
-const Products = ({products}) => {
+interface IpropuctsProps{
+    products: {
+        id: number,
+        title: string,
+        description: string,
+        price: number,
+        image: string,
+    }[],
+};
+
+
+  
+const Products: React.FC <IpropuctsProps> = ({products}) => {
     return (   
         <div>
             {products.map((product) => (
@@ -12,7 +24,7 @@ const Products = ({products}) => {
     );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         products: state.shop.products,
     };

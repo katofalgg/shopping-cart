@@ -1,16 +1,31 @@
 import * as actionTypes from './shopping-types';
-import data from './../../data.json';
+import data from '../../data.json';
 
-const INITIAL_STATE = {
+interface IAction {
+    type: string,
+    payload: {
+        id: number,
+        qty?: number,
+    }
+}
+const INITIAL_STATE= {
     products: data.products,
     cart: [],
     currentItem: null,
 };
+type Item = {
+    id: number; 
+    title: string; 
+    description: string; 
+    price: number; 
+    image: string; 
+ } | undefined ;
 
-const shopReducer = (state = INITIAL_STATE, action) => {
+
+const shopReducer = (state = INITIAL_STATE, action: IAction) => {
     switch (action.type) {
         case actionTypes.ADD_TO_CART:
-            const item = state.products.find(
+            const item: Item = state.products.find(
                 (product) => product.id === action.payload.id
             );
             const inCart = state.cart.find((item) =>

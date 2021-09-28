@@ -2,14 +2,22 @@ import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect } from 'react-redux';
 import classes from './Navbar.module.css';
-const Navbar = ({ cart}) => {
+import { item } from "../Cart/Cart";
+import { RootState } from "../../redux/store";
+
+interface INavbarProps {
+    cart: any[]
+}
+
+
+const Navbar: React.FC<INavbarProps> = ({ cart}) => {
     const [cartCount, setCartCount] = useState(0);
     const [cartPrice, setCartPrice] = useState(0);
 
     useEffect(() => {
         let count = 0;
         let price = 0;
-        cart.forEach((item) => {
+        cart.forEach((item: item) => {
             count += item.qty;
             price += item.qty * item.price
         });
@@ -27,7 +35,7 @@ const Navbar = ({ cart}) => {
             <div className={classes.navbar_cart}>
                 <div className={classes.navbar_price}>{cartPrice} РУБ</div>
                 <Link to='/cart'>
-                <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png"/>
+                <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" alt=''/>
                 </Link>
                 <div className={classes.navbar_count}>+{cartCount}</div>
             </div>
@@ -35,7 +43,7 @@ const Navbar = ({ cart}) => {
     )
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         cart: state.shop.cart
     };

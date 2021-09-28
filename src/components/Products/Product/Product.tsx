@@ -6,8 +6,27 @@ import {
     addToCart
 } from "../../../redux/Shopping/shopping-actions";
 import classes from './../Products.module.css'
+import { AppDispatch } from "../../../redux/store";
 
-const Product = ({ product, addToCart,loadCurrentItem }) => {
+interface IProductProps {
+    product: {
+        id: number,
+        title: string,
+        description: string,
+        price: number,
+        image: string
+    },
+    addToCart: (itemID: number) => void,
+    loadCurrentItem: (item: { id: number; title: string; description: string; price: number; image: string; }) => void,
+}
+export type item = {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    image: string; 
+}
+const Product: React.FC<IProductProps> = ({ product, addToCart, loadCurrentItem }) => {
     return (
         <div className={classes.product}>
             <img
@@ -24,12 +43,12 @@ const Product = ({ product, addToCart,loadCurrentItem }) => {
                 <Link to={`/product/${product.id}`}>
                     <button
                         onClick={() => loadCurrentItem(product)}
-                    ><img src="https://img.icons8.com/ios/50/000000/visible--v1.png"/></button>
+                    ><img src="https://img.icons8.com/ios/50/000000/visible--v1.png" alt=''/></button>
                 </Link>
                 <button
                     onClick={() => addToCart(product.id)}
                 >
-                <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png"/>
+                <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" alt=''/>
                 </button>
             </div>
             </div>
@@ -37,10 +56,10 @@ const Product = ({ product, addToCart,loadCurrentItem }) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        addToCart: (id) => dispatch(addToCart(id)),
-        loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
+        addToCart: (id: number) => dispatch(addToCart(id)),
+        loadCurrentItem: (item: item) => dispatch(loadCurrentItem(item)),
     };
 };
 

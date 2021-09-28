@@ -2,7 +2,21 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import CartItem from "./CartItem/CartItem";
 import classes from './Cart.module.css'
-const Cart = ({cart}) => {
+import { RootState } from '../../redux/store';
+
+interface IcartProps {
+    cart: any[],
+}
+
+export type item = {
+    qty: number,
+    id: number,
+    image: string,
+    title: string,
+    description: string,
+    price: number;
+} 
+const Cart: React.FC<IcartProps> = ({cart}) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
 
@@ -10,19 +24,19 @@ const Cart = ({cart}) => {
         let items = 0;
         let price = 0;
 
-        cart.forEach((item) => {
+        cart.forEach((item: item) => {
            items += item.qty;
            price += item.qty * item.price;
         });
         setTotalItems(items);
         setTotalPrice(price);
-    }, [cart, totalPrice, setTotalItems, setTotalPrice, setTotalItems]);
+    }, [cart, totalPrice, setTotalPrice, setTotalItems]);
 
     return (
         <div className={classes.cart}>
             <div className={classes.cart_item}>
                 { (totalPrice === 0) ?  <h2>В корзине пока что пусто...</h2> :
-                    cart.map((item) => (
+                    cart.map((item: item) => (
                     <CartItem key={item.id} item={item}/>
                 ))
                 } 
@@ -39,7 +53,7 @@ const Cart = ({cart}) => {
     );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         cart: state.shop.cart,
     };

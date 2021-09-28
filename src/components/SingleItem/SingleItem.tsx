@@ -1,8 +1,20 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {addToCart} from "../../redux/Shopping/shopping-actions";
-import classes from './SingleItem.module.css'
-const SingleItem = ({current, addToCart}) => {
+import { AppDispatch, RootState } from "../../redux/store";
+import classes from './SingleItem.module.css';
+
+interface ISingleItemProps {
+    current: {
+        image: string,
+        title: string,
+        description: string,
+        price: number,
+        id: number,
+    },
+    addToCart: (itemID: number) => void,
+}
+const SingleItem:React.FC<ISingleItemProps> = ({current, addToCart}) => {
     return (
         <div className={classes.product}>
             <img
@@ -16,22 +28,22 @@ const SingleItem = ({current, addToCart}) => {
                 <button
                     className={classes.product_button}
                     onClick={() => addToCart(current.id)}
-                ><img src="https://img.icons8.com/ios/50/000000/shopping-cart.png"/>
+                ><img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" alt=''/>
                 </button>
             </div>
         </div>
     );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
     return {
         current: state.shop.currentItem
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        addToCart: (id) => dispatch(addToCart(id)),
+        addToCart: (id:number) => dispatch(addToCart(id)),
     };
 };
 export default  connect(mapStateToProps, mapDispatchToProps)(SingleItem);

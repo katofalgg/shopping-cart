@@ -1,12 +1,25 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {connect} from 'react-redux';
 import {
     adjustItemQTY,
     removeFromCart,
 } from "../../../redux/Shopping/shopping-actions";
+import { AppDispatch } from "../../../redux/store";
 
+interface ICartItemProps {
+    item: {
+        qty: number,
+        id: number,
+        image: string,
+        title: string,
+        description: string,
+        price: number,
+    },
+    adjustQTY: (itemID: number, qty: number) => void,
+    removeFromCart: (itemID: number) => void, 
+}
 
-const CartItem = ({item, adjustQTY, removeFromCart}) => {
+const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) => {
     const [input, setInput] = useState(item.qty);
 
     const onChangeHandler = (e) => {
@@ -43,10 +56,10 @@ const CartItem = ({item, adjustQTY, removeFromCart}) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        adjustQTY: (id, value) => dispatch(adjustItemQTY(id, value)),
-        removeFromCart: (id) => dispatch(removeFromCart(id)),
+        adjustQTY: (id: number, value: number) => dispatch(adjustItemQTY(id, value)),
+        removeFromCart: (id: number) => dispatch(removeFromCart(id)),
     };
 }
 

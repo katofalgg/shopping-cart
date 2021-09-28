@@ -10,12 +10,13 @@ import Navbar from "./components/Navbar/Navbar";
 import Products from "./components/Products/Products";
 import Cart from "./components/Cart/Cart";
 import SingleItem from "./components/SingleItem/SingleItem";
+import { RootState } from './redux/store';
 
-type Props = {
-  current: string,
+interface IProps {
+  current: {},
 }
-/* @ts-ignore */
-const App = ({current}) => {
+
+const App: React.FC<IProps> = ({current}) => {
   return (
     <Router>
       <div className='main'>
@@ -34,8 +35,8 @@ const App = ({current}) => {
     </Router>
   );
 }
-/* @ts-ignore */
-const mapStateToProps = (state) => {
+
+const mapStateToProps = (state: RootState) => {
   return {
     current: state.shop.currentItem,
   };
