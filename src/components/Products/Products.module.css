@@ -1,0 +1,31 @@
+.product {
+    display: flex;
+    flex-direction: row;
+    padding: 3% 15%;
+    justify-content: space-evenly;
+}
+.product_img {
+    max-width: 400px;
+    height: 200px;   
+}
+.product_info {
+    flex-direction: column;
+    width: 400px;
+    word-wrap: break-word;  
+}
+.product button{
+    height: 50px;
+    width: 50px;
+    background-color: #5597ee;
+    border-radius: 3px;
+    border-width: 0;
+    margin: 10px;
+    box-shadow: 2px 10px 10px rgba(129, 120, 111, 0.5);
+}
+.product button img{
+    max-width: 35px;
+    max-height: 35px;
+}
+.product button:active img{
+    transform: rotate(8deg);
+}

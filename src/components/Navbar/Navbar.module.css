@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 2%;
+    height: 50px;
+    background-color: #366af8;
+}
+.navbar_price {
+    padding-right: 10px;
+}
+.navbar_cart {
+    display: flex;
+    align-items: center;
+}
+.navbar_cart img{
+    width: 43px;
+}
+.navbar_title a{
+    font-size: 30px;
+    color: black;
+    font-family:fantasy
+}
+.navbar_count{
+    padding: 10px;
+    font-size: 20px;
+}
