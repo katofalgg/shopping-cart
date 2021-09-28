@@ -34,9 +34,11 @@ const Navbar: React.FC<INavbarProps> = ({ cart}) => {
             </div>
             <div className={classes.navbar_cart}>
                 <div className={classes.navbar_price}>{cartPrice} РУБ</div>
+                <div className={classes.navbar_link}>
                 <Link to='/cart'>
                 <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" alt=''/>
                 </Link>
+                </div>
                 <div className={classes.navbar_count}>+{cartCount}</div>
             </div>
         </div>

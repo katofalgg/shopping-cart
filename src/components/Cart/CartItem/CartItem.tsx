@@ -22,9 +22,11 @@ interface ICartItemProps {
 const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) => {
     const [input, setInput] = useState(item.qty);
 
-    const onChangeHandler = (e) => {
-        setInput(e.target.value);
-        adjustQTY(item.id, e.target.value);
+    const onChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {        
+        const element = e.currentTarget as HTMLInputElement
+        const value = element.value
+        setInput(Number(value));
+        adjustQTY(item.id, Number(value));
     };
 
     return (

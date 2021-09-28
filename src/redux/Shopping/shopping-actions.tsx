@@ -5,6 +5,7 @@ export const addToCart = (itemID: number) => {
         type: actionTypes.ADD_TO_CART,
         payload: {
             id: itemID,
+            
         },
     };
 };

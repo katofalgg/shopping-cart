@@ -8,12 +8,19 @@ interface IAction {
         qty?: number,
     }
 }
-const INITIAL_STATE= {
-    products: data.products,
-    cart: [],
-    currentItem: null,
-};
-type Item = {
+export type IState = {
+    products:  
+        {
+            id: number; 
+            title: string; 
+            description: string; 
+            price: number; 
+            image: string;
+        }[],
+    cart: any[],
+    currentItem: any,
+}
+export type Item = {
     id: number; 
     title: string; 
     description: string; 
@@ -21,8 +28,13 @@ type Item = {
     image: string; 
  } | undefined ;
 
+const INITIAL_STATE= {
+    products: data.products,
+    cart: [],
+    currentItem: null,
+};
 
-const shopReducer = (state = INITIAL_STATE, action: IAction) => {
+const shopReducer = (state: IState = INITIAL_STATE, action: IAction) => {
     switch (action.type) {
         case actionTypes.ADD_TO_CART:
             const item: Item = state.products.find(
@@ -51,7 +63,7 @@ const shopReducer = (state = INITIAL_STATE, action: IAction) => {
                 ...state,
                 cart: state.cart.map((item) =>
                 item.id === action.payload.id
-                ? {...item, qty: +action.payload.qty}
+                ? {...item, qty: +action.payload.qty!}
                 : item
                 ),
             };

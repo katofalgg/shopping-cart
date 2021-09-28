@@ -45,11 +45,13 @@ const Product: React.FC<IProductProps> = ({ product, addToCart, loadCurrentItem 
                         onClick={() => loadCurrentItem(product)}
                     ><img src="https://img.icons8.com/ios/50/000000/visible--v1.png" alt=''/></button>
                 </Link>
-                <button
+                <div className={classes.cart_button}>
+                <button 
                     onClick={() => addToCart(product.id)}
                 >
-                <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" alt=''/>
+                    <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" alt=''/>
                 </button>
+                </div>
             </div>
             </div>
         </div>

@@ -14,14 +14,27 @@
     align-items: center;
 }
 .navbar_cart img{
-    width: 43px;
+    width: 35px;
 }
 .navbar_title a{
     font-size: 30px;
     color: black;
-    font-family:fantasy
+    font-family: fantasy;
 }
 .navbar_count{
     padding: 10px;
     font-size: 20px;
 }
+.navbar_link {
+    height: 50px;
+    width: 50px;
+    background-color: #85d7fd;
+    border-radius: 3px;
+    border-width: 0;
+    margin: 10px;
+    box-shadow: 4px 0px 10px rgba(18, 26, 95, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
