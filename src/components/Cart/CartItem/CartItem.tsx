@@ -6,7 +6,7 @@ import {
 } from "../../../redux/Shopping/shopping-actions";
 import { AppDispatch } from "../../../redux/store";
 
-interface ICartItemProps {
+export interface ICartItemProps {
     item: {
         qty: number,
         id: number,
@@ -49,8 +49,10 @@ const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) =
                     name='qty'
                     value={input}
                     onChange={onChangeHandler}
+                    data-test='input'
                 />
                 <button
+                    data-testid='cart-1'
                     onClick={() => removeFromCart(item.id)}
                 >Удалить</button>
             </div>

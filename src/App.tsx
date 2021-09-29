@@ -16,7 +16,7 @@ interface IProps {
   current: {},
 }
 
-const App: React.FC<IProps> = ({current}) => {
+export const App: React.FC<IProps> = ({current}) => {
   return (
     <Router>
       <div className='main'>
