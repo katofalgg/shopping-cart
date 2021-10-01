@@ -4,7 +4,7 @@ import {
     adjustItemQTY,
     removeFromCart,
 } from "../../../redux/Shopping/shopping-actions";
-import { AppDispatch } from "../../../redux/store";
+import {AppDispatch} from "../../../redux/store";
 
 export interface ICartItemProps {
     item: {
@@ -16,13 +16,13 @@ export interface ICartItemProps {
         price: number,
     },
     adjustQTY: (itemID: number, qty: number) => void,
-    removeFromCart: (itemID: number) => void, 
+    removeFromCart: (itemID: number) => void,
 }
 
 const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) => {
     const [input, setInput] = useState(item.qty);
 
-    const onChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {        
+    const onChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
         const element = e.currentTarget as HTMLInputElement
         const value = element.value
         setInput(Number(value));
@@ -54,7 +54,8 @@ const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) =
                 <button
                     data-testid='cart-1'
                     onClick={() => removeFromCart(item.id)}
-                >Удалить</button>
+                >Удалить
+                </button>
             </div>
         </div>
     );

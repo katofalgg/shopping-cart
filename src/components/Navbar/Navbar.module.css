@@ -6,25 +6,31 @@
     height: 50px;
     background-color: #366af8;
 }
+
 .navbar_price {
     padding-right: 10px;
 }
+
 .navbar_cart {
     display: flex;
     align-items: center;
 }
-.navbar_cart img{
+
+.navbar_cart img {
     width: 35px;
 }
-.navbar_title a{
+
+.navbar_title a {
     font-size: 30px;
     color: black;
     font-family: fantasy;
 }
-.navbar_count{
+
+.navbar_count {
     padding: 10px;
     font-size: 20px;
 }
+
 .navbar_link {
     height: 50px;
     width: 50px;

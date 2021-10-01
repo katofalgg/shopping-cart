@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {addToCart} from "../../redux/Shopping/shopping-actions";
-import { AppDispatch, RootState } from "../../redux/store";
+import {AppDispatch, RootState} from "../../redux/store";
 import classes from './SingleItem.module.css';
 
 interface ISingleItemProps {
@@ -14,7 +14,8 @@ interface ISingleItemProps {
     },
     addToCart: (itemID: number) => void,
 }
-const SingleItem:React.FC<ISingleItemProps> = ({current, addToCart}) => {
+
+const SingleItem: React.FC<ISingleItemProps> = ({current, addToCart}) => {
     return (
         <div className={classes.product}>
             <img
@@ -43,7 +44,7 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        addToCart: (id:number) => dispatch(addToCart(id)),
+        addToCart: (id: number) => dispatch(addToCart(id)),
     };
 };
-export default  connect(mapStateToProps, mapDispatchToProps)(SingleItem);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleItem);

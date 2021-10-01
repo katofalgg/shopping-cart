@@ -8,27 +8,28 @@ interface IAction {
         qty?: number,
     }
 }
+
 export type IState = {
-    products:  
+    products:
         {
-            id: number; 
-            title: string; 
-            description: string; 
-            price: number; 
+            id: number;
+            title: string;
+            description: string;
+            price: number;
             image: string;
         }[],
     cart: any[],
     currentItem: any,
 }
 export type Item = {
-    id: number; 
-    title: string; 
-    description: string; 
-    price: number; 
-    image: string; 
- } | undefined ;
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    image: string;
+} | undefined ;
 
-const INITIAL_STATE= {
+const INITIAL_STATE = {
     products: data.products,
     cart: [],
     currentItem: null,
@@ -47,9 +48,9 @@ const shopReducer = (state: IState = INITIAL_STATE, action: IAction) => {
                 ...state,
                 cart: inCart
                     ? state.cart.map((item) =>
-                    item.id === action.payload.id
-                    ? {...item, qty: item.qty + 1}
-                    : item
+                        item.id === action.payload.id
+                            ? {...item, qty: item.qty + 1}
+                            : item
                     )
                     : [...state.cart, {...item, qty: 1}],
             };
@@ -62,19 +63,20 @@ const shopReducer = (state: IState = INITIAL_STATE, action: IAction) => {
             return {
                 ...state,
                 cart: state.cart.map((item) =>
-                item.id === action.payload.id
-                ? {...item, qty: +action.payload.qty!}
-                : item
+                    item.id === action.payload.id
+                        ? {...item, qty: +action.payload.qty!}
+                        : item
                 ),
             };
         case  actionTypes.LOAD_CURRENT_ITEM:
-            return  {
-              ...state,
-              currentItem: action.payload,
+            return {
+                ...state,
+                currentItem: action.payload,
             };
         default:
             return state;
-    };
+    }
+    ;
 };
 
-export default  shopReducer;
+export default shopReducer;

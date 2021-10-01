@@ -1,8 +1,9 @@
 import React from "react";
 import {connect} from 'react-redux';
-import { RootState } from "../../redux/store";
+import {RootState} from "../../redux/store";
 import Product from "./Product/Product";
-interface IpropuctsProps{
+
+interface IpropuctsProps {
     products: {
         id: number,
         title: string,
@@ -13,13 +14,12 @@ interface IpropuctsProps{
 };
 
 
-  
-const Products: React.FC <IpropuctsProps> = ({products}) => {
-    return (   
+const Products: React.FC<IpropuctsProps> = ({products}) => {
+    return (
         <div>
             {products.map((product) => (
                 <Product key={product.id} product={product}/>
-            ))}; 
+            ))};
         </div>
     );
 };

@@ -6,7 +6,7 @@ import {
     addToCart
 } from "../../../redux/Shopping/shopping-actions";
 import classes from './../Products.module.css'
-import { AppDispatch } from "../../../redux/store";
+import {AppDispatch} from "../../../redux/store";
 
 interface IProductProps {
     product: {
@@ -19,14 +19,15 @@ interface IProductProps {
     addToCart: (itemID: number) => void,
     loadCurrentItem: (item: { id: number; title: string; description: string; price: number; image: string; }) => void,
 }
+
 export type item = {
     id: number;
     title: string;
     description: string;
     price: number;
-    image: string; 
+    image: string;
 }
-const Product: React.FC<IProductProps> = ({ product, addToCart, loadCurrentItem }) => {
+const Product: React.FC<IProductProps> = ({product, addToCart, loadCurrentItem}) => {
     return (
         <div className={classes.product}>
             <img
@@ -40,19 +41,19 @@ const Product: React.FC<IProductProps> = ({ product, addToCart, loadCurrentItem 
                 <p>{product.description}</p>
                 <p>Цена {product.price} РУБ</p>
                 <div className={classes.product_button}>
-                <Link to={`/product/${product.id}`}>
-                    <button
-                        onClick={() => loadCurrentItem(product)}
-                    ><img src="https://img.icons8.com/ios/50/000000/visible--v1.png" alt=''/></button>
-                </Link>
-                <div className={classes.cart_button}>
-                <button 
-                    onClick={() => addToCart(product.id)}
-                >
-                    <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" alt=''/>
-                </button>
+                    <Link to={`/product/${product.id}`}>
+                        <button
+                            onClick={() => loadCurrentItem(product)}
+                        ><img src="https://img.icons8.com/ios/50/000000/visible--v1.png" alt=''/></button>
+                    </Link>
+                    <div className={classes.cart_button}>
+                        <button
+                            onClick={() => addToCart(product.id)}
+                        >
+                            <img src="https://img.icons8.com/ios/50/000000/shopping-cart.png" alt=''/>
+                        </button>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     );
