@@ -1,44 +1,42 @@
 import * as actionTypes from './shopping-types';
 import data from '../../data.json';
+import {item} from '../../components/Cart/Cart';
 
 interface IAction {
     type: string,
     payload: {
-        id: number,
-        qty?: number,
+        qty?: number | undefined;
+        id?: number | undefined;
+        image?: string | undefined;
+        title?: string | undefined;
+        description?: string | undefined;
+        price?: number | undefined;
     }
 }
 
 export type IState = {
     products:
         {
-            id: number;
-            title: string;
-            description: string;
-            price: number;
-            image: string;
+            qty?: number;
+            id?: number | undefined;
+            image?: string | undefined;
+            title?: string | undefined;
+            description?: string | undefined;
+            price?: number | undefined;
         }[],
-    cart: any[],
-    currentItem: any,
+    cart: item[],
+    currentItem: item | null,
 }
-export type Item = {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    image: string;
-} | undefined ;
-
 const INITIAL_STATE = {
     products: data.products,
     cart: [],
     currentItem: null,
 };
 
-const shopReducer = (state: IState = INITIAL_STATE, action: IAction) => {
+const shopReducer = (state: IState = INITIAL_STATE, action: IAction): IState => {
     switch (action.type) {
         case actionTypes.ADD_TO_CART:
-            const item: Item = state.products.find(
+            const item: item | undefined = state.products.find(
                 (product) => product.id === action.payload.id
             );
             const inCart = state.cart.find((item) =>
@@ -49,7 +47,7 @@ const shopReducer = (state: IState = INITIAL_STATE, action: IAction) => {
                 cart: inCart
                     ? state.cart.map((item) =>
                         item.id === action.payload.id
-                            ? {...item, qty: item.qty + 1}
+                            ? {...item, qty: item.qty! + 1}
                             : item
                     )
                     : [...state.cart, {...item, qty: 1}],

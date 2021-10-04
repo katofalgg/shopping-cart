@@ -4,19 +4,19 @@ import CartItem from "./CartItem/CartItem";
 import classes from './Cart.module.css'
 import {RootState} from '../../redux/store';
 
-interface IcartProps {
-    cart: any[],
+interface ICartProps {
+    cart: item[],
 }
 
 export type item = {
-    qty: number,
-    id: number,
-    image: string,
-    title: string,
-    description: string,
-    price: number;
+    qty?: number,
+    id?: number,
+    image?: string,
+    title?: string,
+    description?: string,
+    price?: number;
 }
-const Cart: React.FC<IcartProps> = ({cart}) => {
+const Cart: React.FC<ICartProps> = ({cart}) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
 
@@ -25,8 +25,8 @@ const Cart: React.FC<IcartProps> = ({cart}) => {
         let price = 0;
 
         cart.forEach((item: item) => {
-            items += item.qty;
-            price += item.qty * item.price;
+            items += item.qty!;
+            price += item.qty! * item.price!;
         });
         setTotalItems(items);
         setTotalPrice(price);
@@ -46,7 +46,7 @@ const Cart: React.FC<IcartProps> = ({cart}) => {
                 <p>Общее количество: {totalItems} шт.</p>
                 <p>Общая стоимость: {totalPrice} РУБ</p>
                 <button
-                    onClick={() => alert('Спасибо за покупку!')}
+                    onClick={() => (totalPrice === 0) ? alert('Корзина пуста') : alert('Спасибо за покупку!')}
                 >Оплатить
                 </button>
             </div>

@@ -6,7 +6,7 @@ import {item} from "../Cart/Cart";
 import {RootState} from "../../redux/store";
 
 interface INavbarProps {
-    cart: any[]
+    cart: item[]
 }
 
 
@@ -18,8 +18,8 @@ const Navbar: React.FC<INavbarProps> = ({cart}) => {
         let count = 0;
         let price = 0;
         cart.forEach((item: item) => {
-            count += item.qty;
-            price += item.qty * item.price
+            count += item.qty!;
+            price += item.qty! * item.price!
         });
         setCartCount(count)
         setCartPrice(price);

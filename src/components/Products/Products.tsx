@@ -5,11 +5,12 @@ import Product from "./Product/Product";
 
 interface IpropuctsProps {
     products: {
-        id: number,
-        title: string,
-        description: string,
-        price: number,
-        image: string,
+        qty?: number;
+        id?: number | undefined;
+        image?: string | undefined;
+        title?: string | undefined;
+        description?: string | undefined;
+        price?: number | undefined;
     }[],
 };
 

@@ -1,22 +1,13 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
-import {
-    adjustItemQTY,
-    removeFromCart,
-} from "../../../redux/Shopping/shopping-actions";
+import {adjustItemQTY, removeFromCart,} from "../../../redux/Shopping/shopping-actions";
 import {AppDispatch} from "../../../redux/store";
+import {item} from "../Cart";
 
 export interface ICartItemProps {
-    item: {
-        qty: number,
-        id: number,
-        image: string,
-        title: string,
-        description: string,
-        price: number,
-    },
-    adjustQTY: (itemID: number, qty: number) => void,
-    removeFromCart: (itemID: number) => void,
+    item: item,
+    adjustQTY: (itemID: number | undefined, qty: number | undefined) => void,
+    removeFromCart: (itemID: number | undefined) => void,
 }
 
 const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) => {
@@ -26,7 +17,7 @@ const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) =
         const element = e.currentTarget as HTMLInputElement
         const value = element.value
         setInput(Number(value));
-        adjustQTY(item.id, Number(value));
+        adjustQTY(item.id!, Number(value));
     };
 
     return (
@@ -53,7 +44,7 @@ const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) =
                 />
                 <button
                     data-testid='cart-1'
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(item.id!)}
                 >Удалить
                 </button>
             </div>
@@ -63,8 +54,8 @@ const CartItem: React.FC<ICartItemProps> = ({item, adjustQTY, removeFromCart}) =
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        adjustQTY: (id: number, value: number) => dispatch(adjustItemQTY(id, value)),
-        removeFromCart: (id: number) => dispatch(removeFromCart(id)),
+        adjustQTY: (id: number | undefined, value: number | undefined) => dispatch(adjustItemQTY(id, value)),
+        removeFromCart: (id: number | undefined) => dispatch(removeFromCart(id)),
     };
 }
 

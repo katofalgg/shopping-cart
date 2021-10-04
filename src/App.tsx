@@ -8,12 +8,12 @@ import {connect} from "react-redux";
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import Products from "./components/Products/Products";
-import Cart from "./components/Cart/Cart";
+import Cart, {item} from "./components/Cart/Cart";
 import SingleItem from "./components/SingleItem/SingleItem";
 import {RootState} from './redux/store';
 
 interface IProps {
-    current: {},
+    current: item | null,
 }
 
 export const App: React.FC<IProps> = ({current}) => {

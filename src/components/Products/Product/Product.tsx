@@ -7,26 +7,22 @@ import {
 } from "../../../redux/Shopping/shopping-actions";
 import classes from './../Products.module.css'
 import {AppDispatch} from "../../../redux/store";
+import {item} from "../../Cart/Cart";
+
 
 interface IProductProps {
     product: {
-        id: number,
-        title: string,
-        description: string,
-        price: number,
-        image: string
+        qty?: number;
+        id?: number | undefined;
+        image?: string | undefined;
+        title?: string | undefined;
+        description?: string | undefined;
+        price?: number | undefined;
     },
-    addToCart: (itemID: number) => void,
-    loadCurrentItem: (item: { id: number; title: string; description: string; price: number; image: string; }) => void,
+    addToCart: (itemID: number | undefined) => void,
+    loadCurrentItem: (item: item) => void,
 }
 
-export type item = {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    image: string;
-}
 const Product: React.FC<IProductProps> = ({product, addToCart, loadCurrentItem}) => {
     return (
         <div className={classes.product}>
@@ -61,7 +57,7 @@ const Product: React.FC<IProductProps> = ({product, addToCart, loadCurrentItem})
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        addToCart: (id: number) => dispatch(addToCart(id)),
+        addToCart: (id: number | undefined) => dispatch(addToCart(id)),
         loadCurrentItem: (item: item) => dispatch(loadCurrentItem(item)),
     };
 };
